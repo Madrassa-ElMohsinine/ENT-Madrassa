@@ -14,3 +14,13 @@
     </tbody>
 </table>
 {% endblock %}
+
+{% for eleve in eleves %}
+  <tr>
+    <td>{{ eleve['id'] }}</td>
+    <td>{{ eleve['nom'] }}</td>
+    <td>{{ eleve['prenom'] }}</td>
+    <!-- Autres colonnes -->
+    <td><a href="{{ url_for('fiche_eleve', eleve_id=eleve['id']) }}">Voir fiche</a></td>
+  </tr>
+{% endfor %}

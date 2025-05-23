@@ -29,20 +29,15 @@ def eleves():
 @app.route('/eleve/<int:eleve_id>')
 def fiche_eleve(eleve_id):
     db = get_db()
-    
     # Récupérer l'élève
     eleve = db.execute("SELECT * FROM eleves WHERE id = ?", (eleve_id,)).fetchone()
     if not eleve:
         return "Élève introuvable", 404
-
     # Récupérer la classe
     classe = db.execute("SELECT * FROM classes WHERE id = ?", (eleve["classe_id"],)).fetchone()
-
     # Récupérer les parents
     parents = db.execute("SELECT * FROM parents WHERE eleve_id = ?", (eleve_id,)).fetchall()
-
     return render_template("fiche_eleve.html", eleve=eleve, classe=classe, parents=parents)
-
 
 @app.route('/classes')
 def classes():
