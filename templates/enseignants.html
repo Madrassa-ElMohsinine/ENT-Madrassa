@@ -9,7 +9,7 @@
     </thead>
     <tbody>
         {% for row in enseignants %}
-        <tr>{% for val in row.items() %}<td>{{ val }}</td>{% endfor %}</tr>
+        <tr>{% for col in row.keys() %}<td>{{ row[col] }}</td>{% endfor %}</tr>
         {% endfor %}
     </tbody>
 </table>
