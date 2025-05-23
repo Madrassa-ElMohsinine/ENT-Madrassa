@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Fiche de {{ eleve['prenom'] }} {{ eleve['nom'] }}</h2>
+<table>
+  <tr><th>Nom</th><td>{{ eleve['nom'] }}</td></tr>
+  <tr><th>Prénom</th><td>{{ eleve['prenom'] }}</td></tr>
+  <tr><th>Date de naissance</th><td>{{ eleve['date_naissance'] or 'Non renseignée' }}</td></tr>
+  <tr><th>Adresse</th><td>{{ eleve['adresse'] or 'Non renseignée' }}</td></tr>
+  <tr><th>Ville</th><td>{{ eleve['ville'] or 'Non renseignée' }}</td></tr>
+  <tr><th>Email</th><td>{{ eleve['email'] or 'Non renseigné' }}</td></tr>
+  <tr><th>Téléphone</th><td>{{ eleve['telephone'] or 'Non renseigné' }}</td></tr>
+  <tr><th>Classe</th><td>{{ classe['nom_classe'] if classe else 'Non assignée' }}</td></tr>
+</table>
+
+<h3>Responsables légaux</h3>
+{% if parents %}
+  <ul>
+  {% for parent in parents %}
+    <li><strong>{{ parent['lien'] }} :</strong> {{ parent['prenom'] }} {{ parent['nom'] }} – {{ parent['email'] }} – {{ parent['telephone'] }}</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>Aucun parent renseigné.</p>
+{% endif %}
+
+{% endblock %}
