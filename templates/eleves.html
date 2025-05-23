@@ -1,41 +1,32 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 <h2>Liste des élèves</h2>
-<table class="table table-striped">
-    <thead>
-        <tr>{% for col in eleves[0].keys() %}<th>{{ col }}</th>{% endfor %}</tr>
-    </thead>
- 
-<thead>
-  <tr>
-    {% for col in eleves[0].keys() %}
-      <th>{{ col }}</th>
-    {% endfor %}
-    <th>Action</th>  <!-- colonne supplémentaire -->
-  </tr>
-</thead>
-<tbody>
-  {% for row in eleves %}
-    <tr>
-      {% for col in row.keys() %}
-        <td>{{ row[col] }}</td>
-      {% endfor %}
-      <td><a href="{{ url_for('fiche_eleve', eleve_id=row['id']) }}">Voir fiche</a></td>
-    </tr>
-  {% endfor %}
-</tbody>
 
+<table class="table table-striped">
+  <thead>
+    {% if eleves %}
+      <tr>
+        {% for col in eleves[0].keys() %}
+          <th>{{ col }}</th>
+        {% endfor %}
+        <th>Action</th>
+      </tr>
+    {% else %}
+      <tr><th colspan="99">Aucun élève enregistré.</th></tr>
+    {% endif %}
+  </thead>
+
+  <tbody>
+    {% for row in eleves %}
+      <tr>
+        {% for col in row.keys() %}
+          <td>{{ row[col] }}</td>
+        {% endfor %}
+        <td><a href="{{ url_for('fiche_eleve', eleve_id=row['id']) }}">Voir fiche</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}
 
-{% for eleve in eleves %}
-  <tr>
-    <td>{{ eleve['id'] }}</td>
-    <td>{{ eleve['nom'] }}</td>
-    <td>{{ eleve['prenom'] }}</td>
-    <!-- Autres colonnes -->
-    <td><a href="{{ url_for('fiche_eleve', eleve_id=eleve['id']) }}">Voir fiche</a></td>
-  </tr>
-{% endfor %}
