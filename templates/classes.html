@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Liste des classes</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>{% for col in classes[0].keys() %}<th>{{ col }}</th>{% endfor %}</tr>
+    </thead>
+    <tbody>
+        {% for row in classes %}
+        <tr>{% for val in row.values() %}<td>{{ val }}</td>{% endfor %}</tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
